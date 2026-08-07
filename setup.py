@@ -64,10 +64,10 @@ setup(
     keywords="ethereum",
     packages=find_packages(exclude=["scripts", "scripts.*", "tests", "tests.*"]),
     package_data={"ssz": ["py.typed"]},
+    license="MIT",
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
-        "License :: OSI Approved :: MIT License",
         "Natural Language :: English",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.11",
