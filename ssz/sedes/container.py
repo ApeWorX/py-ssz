@@ -150,9 +150,11 @@ class Container(ProperCompositeSedes[Sequence[Any], tuple[Any, ...]]):
         variable_size_parts_iter = iter(variable_size_values)
 
         value = tuple(
-            next(fixed_size_parts_iter)
-            if sedes.is_fixed_sized
-            else next(variable_size_parts_iter)
+            (
+                next(fixed_size_parts_iter)
+                if sedes.is_fixed_sized
+                else next(variable_size_parts_iter)
+            )
             for sedes in self.field_sedes
         )
 

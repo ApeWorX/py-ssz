@@ -120,7 +120,7 @@ def test_root():
 
 
 class Foo(ssz.Serializable):
-    ...
+    pass
 
 
 @pytest.mark.parametrize(

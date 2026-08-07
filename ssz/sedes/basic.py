@@ -107,8 +107,7 @@ class ProperCompositeSedes(BaseProperCompositeSedes[TSerializable, TDeserialized
         for index, element in enumerate(value):
             yield element, self.get_element_sedes(index)
 
-    def _validate_serializable(self, value: Any) -> None:
-        ...
+    def _validate_serializable(self, value: Any) -> None: ...
 
     def serialize(self, value: TSerializable) -> bytes:
         self._validate_serializable(value)
@@ -155,9 +154,11 @@ class ProperCompositeSedes(BaseProperCompositeSedes[TSerializable, TDeserialized
         offsets_iter = iter(offsets)
 
         fixed_size_section_parts = tuple(
-            sedes.serialize(item)  # slow
-            if sedes.is_fixed_sized
-            else encode_offset(next(offsets_iter))
+            (
+                sedes.serialize(item)  # slow
+                if sedes.is_fixed_sized
+                else encode_offset(next(offsets_iter))
+            )
             for item, sedes in pairs
         )
 
@@ -196,8 +197,7 @@ class ProperCompositeSedes(BaseProperCompositeSedes[TSerializable, TDeserialized
         return value
 
     @abstractmethod
-    def _deserialize_stream(self, stream: IO[bytes]) -> TDeserialized:
-        ...
+    def _deserialize_stream(self, stream: IO[bytes]) -> TDeserialized: ...
 
     def get_key(self, value: Any) -> str:
         return get_key(self, value)
