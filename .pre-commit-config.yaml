@@ -1,7 +1,7 @@
 exclude: '.project-template|docs/conf.py'
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v6.0.0
     hooks:
     -   id: check-yaml
     -   id: check-toml
@@ -11,24 +11,24 @@ repos:
     rev: v3.21.2
     hooks:
     -   id: pyupgrade
-        args: [--py310-plus]
+        args: [--py311-plus]
 -   repo: https://github.com/psf/black
-    rev: 23.9.1
+    rev: 26.5.1
     hooks:
     -   id: black
 -   repo: https://github.com/PyCQA/flake8
-    rev: 6.1.0
+    rev: 7.3.0
     hooks:
     -   id: flake8
         additional_dependencies:
-        -   flake8-bugbear==23.9.16
+        -   flake8-bugbear==25.11.29
         exclude: 'setup.py'
 -   repo: https://github.com/PyCQA/autoflake
-    rev: v2.2.1
+    rev: v2.3.3
     hooks:
     -   id: autoflake
 -   repo: https://github.com/pycqa/isort
-    rev: 5.12.0
+    rev: 8.0.1
     hooks:
     -   id: isort
 -   repo: https://github.com/pycqa/pydocstyle
@@ -38,7 +38,7 @@ repos:
         additional_dependencies:
         -   tomli  # required until >= python311
 -   repo: https://github.com/executablebooks/mdformat
-    rev: 0.7.17
+    rev: 1.0.0
     hooks:
     -   id: mdformat
         additional_dependencies:
