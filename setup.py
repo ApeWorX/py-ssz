@@ -18,10 +18,10 @@ extras_require = {
         "sphinx>=6.0.0",
         "sphinx-autobuild>=2021.3.14",
         "sphinx_rtd_theme>=1.0.0",
-        "towncrier>=24,<25",
+        "towncrier>=25",
     ],
     "test": [
-        "hypothesis>=6.22.0,<6.108.7",
+        "hypothesis>=6.156.0",
         "pytest>=7.0.0",
         "pytest-xdist>=2.4.0",
     ],
