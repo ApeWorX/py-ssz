@@ -3,7 +3,6 @@ from collections.abc import (
 )
 from typing import (
     Any,
-    Union,
 )
 
 from eth_typing import (
@@ -31,7 +30,7 @@ from ssz.utils import (
     pack_bits,
 )
 
-BytesOrByteArray = Union[bytes, bytearray]
+BytesOrByteArray = bytes | bytearray
 
 
 class Bitlist(BitfieldCompositeSedes[BytesOrByteArray, bytes]):

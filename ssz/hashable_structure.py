@@ -1,11 +1,11 @@
+import functools
+import itertools
 from collections.abc import (
     Generator,
     Iterable,
     Iterator,
     Sequence,
 )
-import functools
-import itertools
 from typing import (
     Any,
     TypeVar,
@@ -163,8 +163,9 @@ def get_updated_chunks(
 
     for chunk_index, element_indices in element_indices_by_chunk.items():
         chunk_updates = {
-            element_index
-            % elements_per_chunk: effective_updated_elements[element_index]
+            element_index % elements_per_chunk: effective_updated_elements[
+                element_index
+            ]
             for element_index in element_indices
         }
         updated_chunk = update_elements_in_chunk(

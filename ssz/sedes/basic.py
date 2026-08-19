@@ -1,3 +1,5 @@
+import io
+import operator
 from abc import (
     abstractmethod,
 )
@@ -6,8 +8,6 @@ from collections.abc import (
     Iterable,
     Sequence,
 )
-import io
-import operator
 from typing import (
     IO,
     Any,
@@ -107,8 +107,7 @@ class ProperCompositeSedes(BaseProperCompositeSedes[TSerializable, TDeserialized
         for index, element in enumerate(value):
             yield element, self.get_element_sedes(index)
 
-    def _validate_serializable(self, value: Any) -> None:
-        ...
+    def _validate_serializable(self, value: Any) -> None: ...
 
     def serialize(self, value: TSerializable) -> bytes:
         self._validate_serializable(value)
@@ -196,8 +195,7 @@ class ProperCompositeSedes(BaseProperCompositeSedes[TSerializable, TDeserialized
         return value
 
     @abstractmethod
-    def _deserialize_stream(self, stream: IO[bytes]) -> TDeserialized:
-        ...
+    def _deserialize_stream(self, stream: IO[bytes]) -> TDeserialized: ...
 
     def get_key(self, value: Any) -> str:
         return get_key(self, value)

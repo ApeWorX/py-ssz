@@ -1,7 +1,7 @@
+import functools
 from collections.abc import (
     Iterable,
 )
-import functools
 from typing import (
     Any,
 )

@@ -29,9 +29,9 @@ def create_inheritance_structure(structure):
                 ","
             )
 
-        assert all(
-            parent_name in class_dict for parent_name in parent_names
-        ), "invalid class definition"
+        assert all(parent_name in class_dict for parent_name in parent_names), (
+            "invalid class definition"
+        )
 
         # define fields if necessary and figure out expected argument names
         class_defines_fields = class_definition.endswith("*")

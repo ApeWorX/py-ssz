@@ -1,5 +1,6 @@
-import pytest
 import itertools
+
+import pytest
 
 import ssz
 from ssz.constants import (

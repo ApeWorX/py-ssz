@@ -1,8 +1,13 @@
-import pytest
+from itertools import (
+    chain,
+)
 
+import pytest
 from hypothesis import (
     assume,
     given,
+)
+from hypothesis import (
     strategies as st,
 )
 
@@ -14,6 +19,7 @@ from ssz.hash_tree import (
 )
 from ssz.utils import (
     merkleize,
+    merkleize_with_cache,
 )
 from tests.core.hashable.chunk_strategies import (
     chunk_st,
@@ -29,6 +35,29 @@ def test_compute(chunks_and_chunk_count):
     assert hash_tree.chunks == chunks_and_chunk_count[0]
     assert hash_tree.root == root
     assert hash_tree.chunk_count == chunks_and_chunk_count[1]
+
+
+def test_cached_merkleization_and_hash_tree_updates():
+    chunks = [index.to_bytes(32, "little") for index in range(1024)]
+    updated_chunks = list(chunks)
+    updates = tuple(
+        (index, (index + 1024).to_bytes(32, "little")) for index in range(10)
+    )
+
+    root, cache = merkleize_with_cache(chunks, {})
+    cached_root, cache = merkleize_with_cache(chunks, cache)
+    assert cached_root == root
+
+    hash_tree = HashTree.compute(chunks)
+    assert hash_tree.root == root
+    assert hash_tree.root == root
+
+    for index, chunk in updates:
+        updated_chunks[index] = chunk
+
+    updated_root, _ = merkleize_with_cache(updated_chunks, cache)
+    updated_hash_tree = hash_tree.mset(*chain(*updates))
+    assert updated_hash_tree.root == updated_root
 
 
 @pytest.mark.parametrize(

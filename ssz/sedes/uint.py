@@ -29,13 +29,13 @@ class UInt(BasicSedes[int, int]):
         except OverflowError:
             raise SerializationError(
                 f"{value} is too large to be serialized in {self.size * 8} bits"
-            )
+            ) from None
 
     def deserialize(self, data: bytes) -> int:
         if len(data) != self.size:
             raise DeserializationError(
                 f"Cannot deserialize length {len(data)} byte-string as "
-                f"uint{self.size*8}"
+                f"uint{self.size * 8}"
             )
         return int.from_bytes(data, "little")
 

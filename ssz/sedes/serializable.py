@@ -1,11 +1,11 @@
 import abc
 import collections.abc
-from collections.abc import (
-    Sequence,
-)
 import copy
 import operator
 import re
+from collections.abc import (
+    Sequence,
+)
 from typing import (
     NamedTuple,
 )

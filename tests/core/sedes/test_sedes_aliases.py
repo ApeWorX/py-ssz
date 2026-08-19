@@ -1,7 +1,8 @@
 import pytest
-
 from hypothesis import (
     given,
+)
+from hypothesis import (
     strategies as st,
 )
 
@@ -38,7 +39,6 @@ def test_byte_invalid_length(value):
 @given(st.binary(), st.booleans())
 def test_byte_list(value, same_size):
     """Test that encoding and decoding work the same in ByteList and List[Byte]"""
-
     byte_sequence = tuple(bytes([byte_value]) for byte_value in value)
 
     if same_size:

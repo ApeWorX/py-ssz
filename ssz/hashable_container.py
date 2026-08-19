@@ -1,3 +1,4 @@
+import math
 from abc import (
     ABCMeta,
 )
@@ -5,7 +6,6 @@ from collections.abc import (
     Generator,
     Sequence,
 )
-import math
 from typing import (
     Any,
     NamedTuple,
@@ -255,7 +255,7 @@ GenericMetaSignedHashableContainer = MetaSignedHashableContainer
 
 
 def hashablify_value(value: Any, sedes: BaseSedes) -> Any:
-    if isinstance(value, (HashableContainer, HashableList, HashableVector)):
+    if isinstance(value, HashableContainer | HashableList | HashableVector):
         return value
 
     if isinstance(sedes, List):

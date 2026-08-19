@@ -53,7 +53,7 @@ def parse(value, sedes, codec=DefaultCodec):
         return parse_vector(value, sedes, codec)
     elif isinstance(sedes, Container):
         return parse_container(value, sedes, codec)
-    elif isinstance(sedes, (Bitlist, Bitvector)):
+    elif isinstance(sedes, Bitlist | Bitvector):
         return parse_bits(value, sedes, codec)
     elif isinstance(sedes, MetaSerializable):
         return parse_serializable(value, sedes, codec)

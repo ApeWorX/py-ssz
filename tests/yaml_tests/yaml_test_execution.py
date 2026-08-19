@@ -50,7 +50,7 @@ def execute_valid_ssz_test(test_case, sedes):
     try:
         decoded = ssz.decode(serial, sedes)
     except SSZException:
-        raise FailedTestCase("Deserializing valid SSZ failed")
+        raise FailedTestCase("Deserializing valid SSZ failed") from None
     else:
         if decoded != value:
             raise FailedTestCase(f"Deserializing SSZ returned wrong result {decoded}")
@@ -58,7 +58,7 @@ def execute_valid_ssz_test(test_case, sedes):
     try:
         encoded = ssz.encode(value, sedes)
     except SSZException:
-        raise FailedTestCase("Serializing valid value failed")
+        raise FailedTestCase("Serializing valid value failed") from None
     else:
         if encoded != serial:
             raise FailedTestCase(f"Serializing value retunred wrong result {encoded}")
@@ -105,7 +105,7 @@ def parse_type_definition(type_definition):
         try:
             sedes = sedes_by_name[type_definition]
         except KeyError:
-            raise ValueError(error_message)
+            raise ValueError(error_message) from None
         else:
             return sedes
 
@@ -117,7 +117,7 @@ def parse_type_definition(type_definition):
             try:
                 length = int(type_definition[1])
             except ValueError:
-                raise ValueError(error_message)
+                raise ValueError(error_message) from None
             return Vector(element_type, length)
         else:
             raise ValueError(error_message)

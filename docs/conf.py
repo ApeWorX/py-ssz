@@ -16,14 +16,15 @@
 # sys.path.insert(0, os.path.abspath('.'))
 
 import doctest
-import os
+from importlib.metadata import (
+    PackageNotFoundError,
+    version as get_distribution_version,
+)
 
-DIR = os.path.dirname(__file__)
-with open(os.path.join(DIR, "../setup.py"), "r") as f:
-    for line in f:
-        if "version=" in line:
-            setup_version = line.split('"')[1]
-            break
+try:
+    setup_version = get_distribution_version("ssz")
+except PackageNotFoundError:
+    setup_version = "0.0.0"
 
 # -- General configuration ------------------------------------------------
 

@@ -1,6 +1,6 @@
-import pytest
 import itertools
 
+import pytest
 from eth_utils import (
     decode_hex,
     encode_hex,
@@ -75,13 +75,13 @@ def test_tuple_of_static_sized_entries(value, serialized):
 @pytest.mark.parametrize(
     ("value", "serialized"),
     (
-        (((),), "0x" "04000000"),
-        (((0xAA,),), "0x" "04000000" "aa"),
-        (((0xAA, 0xBB, 0xCC),), "0x" "04000000" "aabbcc"),
-        (((), (), ()), "0x" "0c000000" "0c000000" "0c000000" ""),
+        (((),), "0x04000000"),
+        (((0xAA,),), "0x04000000aa"),
+        (((0xAA, 0xBB, 0xCC),), "0x04000000aabbcc"),
+        (((), (), ()), "0x0c0000000c0000000c000000"),
         (
             ((0xAA,), (0xBB, 0xCC), (0xDD, 0xEE, 0xFF)),
-            "0x" "0c000000" "0d000000" "0f000000" "aa" "bbcc" "ddeeff",
+            "0x0c0000000d0000000f000000aabbccddeeff",
         ),
     ),
 )
@@ -107,22 +107,22 @@ def test_container_of_static_sized_fields(value, serialized):
 @pytest.mark.parametrize(
     ("fields", "value", "serialized"),
     (
-        ((List(uint8, 2**32),), ((),), "0x" "04000000"),
-        ((List(uint8, 2**32),), ((0xAA, 0xBB),), "0x" "04000000" "aabb"),
+        ((List(uint8, 2**32),), ((),), "0x04000000"),
+        ((List(uint8, 2**32),), ((0xAA, 0xBB),), "0x04000000aabb"),
         (
             (uint8, List(uint8, 2**32)),
             (0xAA, (0xBB, 0xCC)),
-            "0x" "aa" "05000000" "bbcc",
+            "0xaa05000000bbcc",
         ),
         (
             (List(uint8, 2**32), uint8),
             ((0xAA, 0xBB), 0xCC),
-            "0x" "05000000" "cc" "aabb",
+            "0x05000000ccaabb",
         ),
         (
             (List(uint8, 2**32), List(uint8, 2**32)),
             ((0xAA, 0xBB), (0xCC, 0xDD)),
-            "0x" "08000000" "0a000000" "aabbccdd",
+            "0x080000000a000000aabbccdd",
         ),
     ),
 )
