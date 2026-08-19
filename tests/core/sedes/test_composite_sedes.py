@@ -38,7 +38,11 @@ from ssz.sedes import (
         ((0xAA,), "0xaa"),
         ((0xAA, 0xBB, 0xCC), "0xaabbcc"),
         ((0xAA,) * 256, "0x" + "aa" * 256),
-        ((0xAA,) * (256**2 - 1), "0x" + "aa" * (256**2 - 1)),
+        pytest.param(
+            (0xAA,) * (256**2 - 1),
+            "0x" + "aa" * (256**2 - 1),
+            id="large_list",  # Add explicit, shorter test ID
+        ),
     ),
 )
 def test_list(value, serialized):
