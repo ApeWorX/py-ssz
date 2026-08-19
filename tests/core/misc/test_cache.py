@@ -29,7 +29,7 @@ def test_cache_sanity(foo_with_db, foo_without_db):
 
 
 def test_reset_cache_with_db(foo_with_db):
-    foo_with_db.hash_tree_root
+    _ = foo_with_db.hash_tree_root
     assert len(foo_with_db.cache._cached_values) >= 0
 
     foo_with_db.reset_cache()
@@ -37,7 +37,7 @@ def test_reset_cache_with_db(foo_with_db):
 
 
 def test_reset_cache_without_db(foo_without_db):
-    foo_without_db.hash_tree_root
+    _ = foo_without_db.hash_tree_root
     assert len(foo_without_db.cache) >= 0
 
     foo_without_db.reset_cache()

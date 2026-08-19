@@ -119,8 +119,7 @@ def test_root():
     assert test.hash_tree_root == ssz.get_hash_tree_root(test, Test)
 
 
-class Foo(ssz.Serializable):
-    ...
+class Foo(ssz.Serializable): ...
 
 
 @pytest.mark.parametrize(

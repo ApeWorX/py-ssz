@@ -42,7 +42,7 @@ def dump(value, sedes=None, codec=DefaultCodec):
         return dump_serializable(value, codec)
     elif isinstance(value, HashableContainer):
         return dump_hashable_container(value, codec)
-    elif isinstance(value, (HashableList, HashableVector)):
+    elif isinstance(value, HashableList | HashableVector):
         return dump_hashable_sequence(value, codec)
     elif sedes is None:
         raise ValueError("Sedes may only be omitted for serializables or hashables")
@@ -57,7 +57,7 @@ def dump(value, sedes=None, codec=DefaultCodec):
         return dump_list(value, sedes, codec)
     elif isinstance(sedes, Vector):
         return dump_vector(value, sedes, codec)
-    elif isinstance(sedes, (Bitlist, Bitvector)):
+    elif isinstance(sedes, Bitlist | Bitvector):
         return dump_bits(value, sedes, codec)
     elif isinstance(sedes, Container):
         return dump_container(value, sedes, codec)

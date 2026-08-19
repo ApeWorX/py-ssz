@@ -1,3 +1,4 @@
+import itertools
 from collections.abc import (
     Generator,
     Iterable,
@@ -5,7 +6,6 @@ from collections.abc import (
 from functools import (
     partial,
 )
-import itertools
 from numbers import (
     Integral,
 )

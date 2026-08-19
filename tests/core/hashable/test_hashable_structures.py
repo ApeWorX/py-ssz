@@ -3,6 +3,8 @@ import itertools
 from hypothesis import (
     assume,
     given,
+)
+from hypothesis import (
     strategies as st,
 )
 from pyrsistent import (

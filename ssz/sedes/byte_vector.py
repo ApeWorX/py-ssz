@@ -1,7 +1,3 @@
-from typing import (
-    Union,
-)
-
 from eth_typing import (
     Hash32,
 )
@@ -25,7 +21,7 @@ from ssz.utils import (
     pack_bytes,
 )
 
-BytesOrByteArray = Union[bytes, bytearray]
+BytesOrByteArray = bytes | bytearray
 
 
 class ByteVector(Vector[BytesOrByteArray, bytes]):

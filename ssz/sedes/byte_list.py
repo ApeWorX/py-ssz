@@ -1,7 +1,3 @@
-from typing import (
-    Union,
-)
-
 from ssz.exceptions import (
     DeserializationError,
     SerializationError,
@@ -18,7 +14,7 @@ from ssz.utils import (
     pack_bytes,
 )
 
-BytesOrByteArray = Union[bytes, bytearray]
+BytesOrByteArray = bytes | bytearray
 
 
 class ByteList(List[BytesOrByteArray, bytes]):

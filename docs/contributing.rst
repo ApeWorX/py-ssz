@@ -15,16 +15,15 @@ development machine:
 
     git clone git@github.com:your-github-username/py-ssz.git
 
-Next, install the development dependencies. We recommend using a virtual environment,
-such as `virtualenv <https://virtualenv.pypa.io/en/stable/>`_.
+Next, install the development dependencies with
+`uv <https://docs.astral.sh/uv/>`_. The ``dev`` dependency group is installed
+by default, so ``uv sync`` is enough for a local development environment.
 
 .. code:: sh
 
     cd py-ssz
-    virtualenv -p python venv
-    . venv/bin/activate
-    python -m pip install -e ".[dev]"
-    pre-commit install
+    uv sync
+    uv run prek install
 
 Running the tests
 ~~~~~~~~~~~~~~~~~
@@ -40,7 +39,7 @@ We can run all tests with:
 Code Style
 ~~~~~~~~~~
 
-We use `pre-commit <https://pre-commit.com/>`_ to enforce a consistent code style across
+We use `prek <https://prek.j178.dev>`_ to enforce a consistent code style across
 the library. This tool runs automatically with every commit, but you can also run it
 manually with:
 
@@ -48,11 +47,11 @@ manually with:
 
     make lint
 
-If you need to make a commit that skips the ``pre-commit`` checks, you can do so with
+If you need to make a commit that skips the ``prek`` checks, you can do so with
 ``git commit --no-verify``.
 
 This library uses type hints, which are enforced by the ``mypy`` tool (part of the
-``pre-commit`` checks). All new code is required to land with type hints, with the
+``prek`` checks). All new code is required to land with type hints, with the
 exception of code within the ``tests`` directory.
 
 Documentation
@@ -92,15 +91,12 @@ released from said branch).
 Final review before each release
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Before releasing a new version, build and test the package that will be released:
+Before releasing a new version, run the test suite from the release branch:
 
 .. code:: sh
 
     git checkout main && git pull
-    make package-test
-
-This will build the package and install it in a temporary virtual environment. Follow
-the instructions to activate the venv and test whatever you think is important.
+    uv run --group test pytest tests/core
 
 Review the documentation that will get published:
 

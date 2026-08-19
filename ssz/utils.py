@@ -1,8 +1,8 @@
 import collections
+import functools
 from collections.abc import (
     Sequence,
 )
-import functools
 from typing import (
     IO,
     Any,
