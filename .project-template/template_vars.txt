@@ -1,6 +1,0 @@
-ssz
-ssz
-py-ssz
-ssz
-py-ssz
-Python implementation of the Simple Serialization encoding and decoding

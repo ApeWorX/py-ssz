@@ -79,10 +79,6 @@ dev = [
 exclude = [
     "docs",
     "docs.*",
-    "newsfragments",
-    "newsfragments.*",
-    "scripts",
-    "scripts.*",
     "tests",
     "tests.*",
 ]
@@ -96,10 +92,7 @@ fallback_version = "0.6.0b1"
 [tool.mypy]
 exclude = [
     "^docs/",
-    "^newsfragments/",
-    "^scripts/",
     "^tests/",
-    "^\\.project-template/",
 ]
 check_untyped_defs = true
 ignore_missing_imports = true
@@ -133,7 +126,6 @@ xfail_strict = true
 target-version = "py310"
 line-length = 88
 extend-exclude = [
-    ".project-template",
     "docs/conf.py",
 ]
 
